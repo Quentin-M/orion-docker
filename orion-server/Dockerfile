@@ -9,6 +9,7 @@ ARG database_user
 ARG database_password
 
 RUN apt-get update && apt-get install -y wget unzip python-dev default-libmysqlclient-dev gcc build-essential
+RUN sed '/st_mysql_options options;/a unsigned int reconnect;' /usr/include/mysql/mysql.h -i.bkp
 
 RUN wget -O orion-server.zip https://github.com/LINKIWI/orion-server/archive/$sha.zip
 RUN unzip orion-server.zip
